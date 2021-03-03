@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,9 @@ import com.assignment.service.ApplicationService;
 @RestController
 
 public class ApplicationRestController {
+	
+	@Autowired
+	private KieSession session;
 	
 	@Autowired
 	private ApplicationService applicationService;
@@ -46,6 +50,8 @@ public class ApplicationRestController {
 	public ResponseEntity<Application> addApplication(@Valid @RequestBody Application application,  @PathVariable String jobTitle) throws MethodArgumentNotValidException 
 	{
 		application.setOffer(new Offer(jobTitle));
+		session.insert(application);
+		session.fireAllRules();
 		applicationService.addApplication(application,jobTitle);
 		return new ResponseEntity<Application>(application,HttpStatus.OK);
 	}
