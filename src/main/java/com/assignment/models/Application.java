@@ -20,6 +20,11 @@ public class Application {
 	@NotEmpty(message ="Resume text must not be blank")
 	private String resumeText;
 	
+	@Column(name="GRADE")	
+	private String grade;
+	
+	
+	
 	@NotEmpty(message ="Application status must not be blank")
 	@Column(name="APPLICATION_STATUS")
 	private String applicationStatus;
@@ -74,6 +79,14 @@ public class Application {
 
 	public void setApplicationStatus(String applicationStatus) {
 		this.applicationStatus = applicationStatus;
+	}
+
+	public String getGrade() {
+		return grade;
+	}
+
+	public void setGrade(String grade) {
+		this.grade = grade;
 	}
 
 	
