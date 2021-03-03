@@ -4,6 +4,7 @@ import com.assignment.models.Application;
 import com.assignment.models.Offer;
 import com.assignment.service.*;
 
+import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,8 @@ import javax.validation.Valid;
 
 @RestController
 public class OfferRestController {
+	@Autowired
+	private KieSession session;
 	
 	@Autowired
 	private OfferService offerService;
@@ -45,6 +48,8 @@ public class OfferRestController {
 
 	public ResponseEntity<Offer> addOffer(@Valid @RequestBody Offer offer) throws MethodArgumentNotValidException 
 	{
+		session.insert(offer);
+		session.fireAllRules();
 		 offerService.addOffer(offer);
 		 return new ResponseEntity<Offer>(offer,HttpStatus.OK);
 	}
