@@ -22,6 +22,11 @@ public class Offer {
 	@NotEmpty(message="Job title must not be empty")
 	private String jobTitle;
 	
+	@Column(name ="JOINING_BONUS")
+	private int joiningBonus;
+	
+	
+
 	@Column(name="START_DATE")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	@NotNull(message="Please provide a date")
@@ -98,6 +103,12 @@ public class Offer {
 		this.numberOfApplicants = numberOfApplicants;
 	}
 	
-	
+	public int getJoiningBonus() {
+		return joiningBonus;
+	}
+
+	public void setJoiningBonus(int joiningBonus) {
+		this.joiningBonus = joiningBonus;
+	}	
 
 }
