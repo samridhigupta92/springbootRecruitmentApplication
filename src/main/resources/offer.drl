@@ -1,0 +1,30 @@
+package KieRule;
+import com.assignment.models.Offer;
+
+rule "NumberOne"
+
+when 
+offerObject : Offer(jobTitle=="SDE1");
+then
+offerObject.setJoiningBonus(30000);
+end;
+
+rule "NumberTwo"
+
+when 
+offerObject : Offer(jobTitle=="SDE2");
+then
+offerObject.setJoiningBonus(50000);
+end;
+
+rule "NumberThree"
+
+when 
+offerObject : Offer(jobTitle=="SDE3");
+then
+offerObject.setJoiningBonus(70000);
+end;
+
+
+
+
